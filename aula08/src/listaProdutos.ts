@@ -1,10 +1,4 @@
-type ObjetoLista = {
-    id: number;
-    nome: string;
-    qtd: number;
-    preco: number
-}
-
+import { ObjetoLista } from "./types";
 //Gerando uma lista de objetos
 export const listaProdutos: ObjetoLista[] = [
 
