@@ -1,69 +1,17 @@
 import { Link } from "react-router-dom";
-import { listaProdutos } from "../../listaProdutos";
-import styled from "styled-components";
+import "../../listaProdutos";
+import { MinhaTabela } from "../../style/styled";
+import { ObjetoLista } from "../../types";
 
-const MinhaTabela = styled.table`
-  border-collapse:collapse;
-  border: 2px solid #ff0000;
-  margin:0 auto;
-  width: 70vw;
-  font-size:24px;
-
-  & a{
-    text-decoration:none;
-    color:#fff;
-  }
-
-  &
-   thead{
-    background-color:#514f4f;
-     &
-      th{
-        border:2px solid #ff0000;
-        color:#343030;
-        text-align:left;
-      }
-   }
-
-   &
-    tbody{
-      background-color:#514f4f;
-      color:#fff;
-       &
-        td{
-          border:2px solid #ff0000;
-          text-align:center;
-        }
-    }
-
-    &
-      tfoot{
-        background-color:#514f4f;
-        text-align:center;
-        color:#fff;
-      }
-
-      & tr:nth-child(odd){
-        background-color:#e0aeae;
-        color:#262525;
-      }
-
-      & tr:nth-child(even){
-        background-color:#3a3636;
-        color:#b8b4b4;
-      }
-
-      & tr:hover{
-        background-color:#706a6a;
-        color:#232121;
-      }
-
-`
 
 export default function Produtos() {
 
   //MUDANDO O TÍTULO DA PÁGINA!!!
   document.title = "PRODUTOS";
+
+  const listaProdutosString = localStorage.getItem("lista") || '[]';
+  const lista:ObjetoLista[] = JSON.parse(listaProdutosString);
+
 
   return (
     <div>
@@ -79,7 +27,7 @@ export default function Produtos() {
         </thead>
         <tbody>
           {/* COMENTÁRIO */}
-          {listaProdutos.map((produto) => (
+          {lista.map((produto) => (
             <tr key={produto.id}>
               <td>{produto.nome}</td>
               <td>{produto.qtd}</td>
@@ -91,7 +39,7 @@ export default function Produtos() {
         <tfoot>
           <tr>
             <td colSpan={4}>
-              Total de produtos : <span>{listaProdutos.length}</span>
+              Total de produtos : <span>{lista.length}</span>
             </td>
           </tr>
         </tfoot>
