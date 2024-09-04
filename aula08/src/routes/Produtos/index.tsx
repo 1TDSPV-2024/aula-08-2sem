@@ -1,16 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { listaProdutos } from "../../listaProdutos";
-
+import { MinhaTabela } from "../../style/styled";
+import { ObjetoLista } from "../../types";
 
 export default function Produtos() {
 
   //MUDANDO O TÍTULO DA PÁGINA!!!
   document.title = "PRODUTOS";
 
+
+
+
+  /* PARSE AND CAST --> DIFERENÇAS */
+  const listaProdutosString = localStorage.getItem("lista") || '[]';
+  const lista: ObjetoLista[] = JSON.parse(listaProdutosString);
+
+  const [produtos] = useState<ObjetoLista[]>(lista);
+
   return (
     <div>
       <h1>Produtos Eletrônicos</h1>
-      <table>
+      <MinhaTabela>
         <thead>
           <tr>
             <th>Nome</th>
@@ -21,7 +32,7 @@ export default function Produtos() {
         </thead>
         <tbody>
           {/* COMENTÁRIO */}
-          {listaProdutos.map((produto) => (
+          {produtos.map((produto) => (
             <tr key={produto.id}>
               <td>{produto.nome}</td>
               <td>{produto.qtd}</td>
@@ -37,7 +48,7 @@ export default function Produtos() {
             </td>
           </tr>
         </tfoot>
-      </table>
+      </MinhaTabela>
     </div>
   );
 }

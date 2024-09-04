@@ -60,3 +60,69 @@ export const MenuLink = styled.a`
   padding: 10px 20px;
   display: block;
 `
+export const MinhaTabela = styled.table`
+  border-collapse:collapse;
+    border: 2px solid red;
+    margin:0 auto;
+    width: 60vw;
+    font-size: 20px;
+    
+    & 
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      & 
+        tr:nth-child(odd) {
+          background-color: green;
+          color: white
+
+        }
+        & 
+        tr:nth-child(even) {
+          background-color: lightgreen;
+          color: white
+        }
+
+        & tr:hover{
+          background-color: #436d43;
+          color: white;
+        }
+
+
+
+    &
+      thead{
+        background-color: black;
+        & 
+          th {
+            border:2px solid #ff0000;
+            color: #fff;
+            text-align: center;
+          }
+          
+        }
+        
+        & 
+          tbody {
+            background-color: green;
+            color: #fff;
+
+            & 
+              td {
+                border: 2px solid red;
+                text-align: center;
+
+              }
+
+
+          }
+
+          &
+            tfoot {
+              background-color: green;
+              text-align: center;
+              color: #fff;
+            }
+        `
