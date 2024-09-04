@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "../../listaProdutos";
 import { MinhaTabela } from "../../style/styled";
 import { ObjetoLista } from "../../types";
+import { useState } from "react";
 export default function Produtos() {
   //MUDANDO O TÍTULO DA PÁGINA!!!
   document.title = "PRODUTOS";
@@ -9,6 +10,8 @@ export default function Produtos() {
   const listaProdutosString = localStorage.getItem("lista") || "[]";
   const lista: ObjetoLista[] = JSON.parse(listaProdutosString);
 
+  const [produtos] = useState<ObjetoLista[]>(lista)
+  
   return (
     <div>
       <h1>Produtos Eletrônicos</h1>
@@ -23,7 +26,7 @@ export default function Produtos() {
         </thead>
         <tbody>
           {/* COMENTÁRIO */}
-          {lista.map((produto) => (
+          {produtos.map((produto) => (
             <tr key={produto.id}>
               <td>{produto.nome}</td>
               <td>{produto.qtd}</td>
@@ -37,7 +40,7 @@ export default function Produtos() {
         <tfoot>
           <tr>
             <td colSpan={4}>
-              Total de produtos : <span>{lista.length}</span>
+              Total de produtos : <span>{produtos.length}</span>
             </td>
           </tr>
         </tfoot>
