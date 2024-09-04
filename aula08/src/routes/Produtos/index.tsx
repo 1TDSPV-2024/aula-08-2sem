@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
-import { listaProdutos } from "../../listaProdutos";
-
-
+import "../../listaProdutos";
+import { MinhaTabela } from "../../style/styled";
+import { ObjetoLista } from "../../types";
 export default function Produtos() {
-
   //MUDANDO O TÍTULO DA PÁGINA!!!
   document.title = "PRODUTOS";
+
+  const listaProdutosString = localStorage.getItem("lista") || "[]";
+  const lista: ObjetoLista[] = JSON.parse(listaProdutosString);
 
   return (
     <div>
       <h1>Produtos Eletrônicos</h1>
-      <table>
+      <MinhaTabela>
         <thead>
           <tr>
             <th>Nome</th>
@@ -21,23 +23,25 @@ export default function Produtos() {
         </thead>
         <tbody>
           {/* COMENTÁRIO */}
-          {listaProdutos.map((produto) => (
+          {lista.map((produto) => (
             <tr key={produto.id}>
               <td>{produto.nome}</td>
               <td>{produto.qtd}</td>
               <td>{produto.preco}</td>
-              <td><Link to={`/editar/produtos/${produto.id}`}>Editar</Link> </td>
+              <td>
+                <Link to={`/editar/produtos/${produto.id}`}>Editar</Link>{" "}
+              </td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <td colSpan={4}>
-              Total de produtos : <span>{listaProdutos.length}</span>
+              Total de produtos : <span>{lista.length}</span>
             </td>
           </tr>
         </tfoot>
-      </table>
+      </MinhaTabela>
     </div>
   );
 }

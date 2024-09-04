@@ -60,3 +60,37 @@ export const MenuLink = styled.a`
   padding: 10px 20px;
   display: block;
 `
+export const MinhaTabela = styled.table`
+  border-collapse: collapse;
+  margin: 0 auto;
+  border: 2px solid #000;
+  width: 50vw;
+
+  & thead {
+    background-color: #09485c;
+    color: #fff;
+
+    & th {
+      text-align: center;
+    }
+  }
+  & tbody {
+    background-color: #c0c0c0;
+
+    & td {
+      text-align: center;
+    }
+  }
+  & tfoot {
+    background-color: #c0c0c0;
+  }
+
+  & a {
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
