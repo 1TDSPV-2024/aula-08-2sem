@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { listaProdutos } from "../../listaProdutos";
+import "../../listaProdutos";
+import { useEffect, useState } from "react";
 
 export default function EditarProdutos() {
 
@@ -13,18 +14,24 @@ export default function EditarProdutos() {
   // const{dados} = useParams(), um detalhe aqui é que o useParams() pertence ao react-router e deve ser importado dele
   const { id } = useParams();
 
-  const objProduto = listaProdutos.find((prod) => prod.id == Number(id));
+  
+  const listaProdutosString = localStorage.getItem("lista") || '[]';
+  const lista = JSON.parse(listaProdutosString);
+
+  useEffect(() => {
+    console.log("ID CHEGOU!!!");
+  }, [id])
+
+  useState
+  
+
+  // const objProduto = listaProdutos.find((prod) => prod.id == Number(id));
 
   return (
     <div>
       <h1>PRODUTO A SER EDITADO</h1>
       <div>
         <h2>ID: {id}</h2>
-        <div>
-          <p>Nome:{objProduto?.nome}</p>
-          <p>Quantidade:{objProduto?.qtd}</p>
-          <p>Preço : R${objProduto?.preco}</p>
-        </div>
       </div>
     </div>
   );
